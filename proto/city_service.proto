@@ -6,7 +6,9 @@ option go_package = "pb/cities;cities";
 import "city_message.proto";
 
 service CitiesService {
-  rpc GetCity(City) returns (City) {}
+  rpc GetCity(Id) returns (City) {}
   rpc GetCities(EmptyMessage) returns (stream CitiesStream) {}
-  rpc GetUnaryCities(EmptyMessage) return (Cities) {}
+  rpc Create(CityInput) returns (City) {}
+  rpc Update(City) returns (City) {}
+  rpc Delete(Id) returns (MyBoolean) {}
 }

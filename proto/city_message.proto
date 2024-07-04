@@ -13,6 +13,14 @@ message CitiesStream{
   City City = 1;
 }
 
-message Cities{
-  repeatedCity City = 1;
+message Id {
+  int32 id = 1;
+}
+
+message CityInput {
+  string name = 1;
+}
+
+message MyBoolean {
+  bool boolean = 1;
 }
