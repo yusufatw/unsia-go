@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"os"
 	"unsia/controllers"
 	"unsia/pb/cities"
 	"unsia/pkg/database"
@@ -19,6 +20,10 @@ func main() {
 		return
 	}
 
+	// =========================================================================
+	// Logging
+	log := log.New(os.Stdout, "Essentials : ", log.LstdFlags|log.Lmicroseconds|log.Lshortfile)
+
 	// Start Database
 
 	db, err := database.OpenDB()
@@ -29,7 +34,7 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 
-	cityServer := controllers.City{DB: db}
+	cityServer := controllers.City{DB: db, Log: log}
 	cities.RegisterCitiesServiceServer(grpcServer, &cityServer)
 
 	fmt.Println("running server grpc")
